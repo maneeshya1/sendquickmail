@@ -43,8 +43,9 @@ exports.Campaign = async (req, res, next) => {
       ]);
     if (rows.affectedRows === 1) {
       return res.status(201).json({
-        success: rows,
+        success: true,
         message: "The campaign has been successfully inserted.",
+        data: rows,
       });
     }
 
@@ -99,8 +100,9 @@ exports.CampaignDetailsEdit = async (req, res, next) => {
       ]);
     if (rows1.affectedRows === 1) {
       return res.status(201).json({
-        message: "The contact details has been successfully updated.",
-        success: req.body,
+        message: "The campaign details has been successfully updated.",
+        success: true,
+        data: req.body,
 
       });
     }

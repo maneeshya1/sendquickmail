@@ -15,6 +15,7 @@ exports.Segment = async (req, res, next) => {
       // return res.status(422).json({
       return res.json({
         message: "Invalid UserId",
+        success: false,
       });
     }
     const [row1] = await dbConn.execute(
@@ -27,6 +28,7 @@ exports.Segment = async (req, res, next) => {
       // return res.status(422).json({
       return res.json({
         message: "Invalid company_Id ",
+        success: false,
       });
     }
     
@@ -51,8 +53,9 @@ exports.Segment = async (req, res, next) => {
 
     if (rows.affectedRows === 1) {
       return res.status(201).json({
-        success: rows,
+        success: true,
         message: "The Segment has been successfully inserted.",
+        data: rows,
       });
     }
 
@@ -121,8 +124,9 @@ exports.UpdateSegment = async (req, res, next) => {
     // }
 
     return res.json({
-      success: rows,
+      success: true,
       message: "The Segment has been successfully Updated",
+      data: rows,
     });
 
   }
