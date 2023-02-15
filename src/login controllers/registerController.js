@@ -109,6 +109,7 @@ if (rowFindUser?.length > 0) {
       return res.status(201).json({
         message: "The user has been successfully inserted. and Email has been sent",
         Data:rows1[0],
+        success: true,
         
       });
     }
