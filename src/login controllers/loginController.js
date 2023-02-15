@@ -22,6 +22,7 @@ exports.login = async (req, res, next) => {
       // return res.status(422).json({
       return res.json({
         message: "Invalid Email address",
+        success: false,
       });
     }
 
@@ -30,6 +31,7 @@ exports.login = async (req, res, next) => {
       // return res.status(422).json({
       return res.json({
         message: "Incorrect password",
+        success: false,
       });
     }
 
