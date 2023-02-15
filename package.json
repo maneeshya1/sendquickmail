@@ -1,0 +1,45 @@
+{
+  "name": "hrms",
+  "version": "1.0.0",
+  "description": "This is app for creating crud api using node, express and mysql",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server"
+  },
+  "keywords": [
+    "nodejs",
+    "expressjs",
+    "mysql",
+    "api",
+    "restfulapi",
+    "javascript",
+    "es6"
+  ],
+  "author": "Mohan ",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^1.5.2",
+    "bcryptjs": "^2.4.3",
+    "big-integer": "^1.6.51",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.17.1",
+    "express-session": "^1.12.1",
+    "express-validator": "^6.14.2",
+    "hbs": "^4.2.0",
+    "http-proxy": "^1.12.0",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.5-lts.1",
+    "mysql": "^2.17.1",
+    "mysql2": "^2.3.3",
+    "node-mysql": "^0.4.2",
+    "nodemailer": "^6.8.0",
+    "nodemon": "^2.0.20"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
