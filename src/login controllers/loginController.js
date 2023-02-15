@@ -40,8 +40,9 @@ exports.login = async (req, res, next) => {
     });
 
     return res.json({
-      success: row,
+      success: true,
       message: "User Login Successfully",
+      data: row,
       token: theToken,
       // Data:req.body,(only use in registration page)
     });
