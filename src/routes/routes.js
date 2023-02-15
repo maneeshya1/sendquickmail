@@ -29,7 +29,14 @@ const {
 const { getAllUser } = require('../Controller/GetContact');
 const { CompanyDetailsEdit } = require('../login controllers/CompanyRegistration');
 //const{getAllUser}=require('../login controllers/')
-const{getUserCompanyDataByUserId}=require('../login controllers/userDetailsWithCompanyData')
+const{getUserCompanyDataByUserId}=require('../login controllers/userDetailsWithCompanyData');
+const {
+  addList_of_TimeZone,
+  getTimeZone,
+  addTimeZone,
+  updateTimeZone,
+} = require("../TimeZone/TimeZone");
+
 router.post(
   "/InviteUser",
   [
@@ -101,5 +108,10 @@ router.post("/addSchedule", addScheduler);
 router.get("/getAllScheduler", getAllScheduler);
 // router.get('/getScheduler/:scheduler_Id',getScheduler);
 router.get("/allCompaniesByUserId/UserId:UserId", getUserCompanyDataByUserId);
+//////////////
+router.post("/addList_of_TimeZone", addList_of_TimeZone);
+router.get("/getAll_TimeZone", getTimeZone);
+router.post("/addTimeZone", addTimeZone);
+router.put("/updateTimeZone", updateTimeZone);
 
 module.exports = router;
