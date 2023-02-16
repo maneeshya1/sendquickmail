@@ -23,6 +23,29 @@ exports.getTimeZone = async (req, resp, next) => {
     next(err);
   }
 };
+exports.getTimeZoneById = async (req, resp, next) => {
+  try {
+    let reqdata = { ...req?.body };
+    const [row] = await dbConn.execute(
+      "SELECT * FROM `tbl_timezone_allcountries` WHERE `Id`=?",
+      [reqdata?.Id]
+    );
+    if (row.length === 0) {
+      return resp.json({
+        message: "Invalid timeZone",
+      });
+    } else {
+      return resp.json({
+        success: "true",
+        message: "timeZone Id matched Successfully",
+        data: row[0],
+      });
+    }
+  } catch (err) {
+    console.log("err...", err);
+    next(err);
+  }
+};
 
 exports.addTimeZone = async (req, resp, next) => {
   try {
