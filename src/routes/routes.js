@@ -37,6 +37,8 @@ const {
   updateTimeZone,
 } = require("../TimeZone/TimeZone");
 
+const {updateUserByUserId} = require('../login controllers/userDetailsWithCompanyData');
+
 router.post(
   "/InviteUser",
   [
@@ -113,5 +115,6 @@ router.post("/addList_of_TimeZone", addList_of_TimeZone);
 router.get("/getAll_TimeZone", getTimeZone);
 router.post("/addTimeZone", addTimeZone);
 router.put("/updateTimeZone", updateTimeZone);
+router.put("/updateUserByUserId", updateUserByUserId);
 
 module.exports = router;
