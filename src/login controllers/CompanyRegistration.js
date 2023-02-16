@@ -12,6 +12,7 @@ exports.CompanyRegistration = async (req, res, next) => {
       // return res.status(422).json({
       return res.json({
         message: "Invalid UserId",
+        success: false,
       });
     }
     const [rows] = await dbConn.execute(
@@ -30,8 +31,9 @@ exports.CompanyRegistration = async (req, res, next) => {
       ]);
     if (rows.affectedRows === 1) {
       return res.status(201).json({
-        success: rows,
+        success: true,
         message: "The user has been successfully inserted.",
+        data: rows,
       });
     }
 
@@ -78,7 +80,8 @@ exports.CompanyDetailsEdit = async (req, res, next) => {
     if (rows1.affectedRows === 1) {
       return res.status(201).json({
         message: "The company details has been successfully updated.",
-        success: req.body,
+        success: true,
+        data: req.body,
 
       });
     }

@@ -31,7 +31,7 @@ exports.ContactDetails = async (req, res, next) => {
       ]);
     if (rows.affectedRows === 1) {
       return res.status(201).json({
-        message: "The campaign details has been successfully inserted.",
+        message: "The contact details has been successfully inserted.",
         success: true,
         data: req.body,
 
