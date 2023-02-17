@@ -21,7 +21,11 @@ exports.create = function (req, res) {
         Contact.create(contacts, function (err, contact) {
             if (err)
                 res.send(err);
-            res.json({ error: false, success: true, message: "contact added successfully!", data: contact });
+            if (contact?.success) {
+                res.json({ error: false,  message: "successfully!", data: contact });
+            } else {
+                res.json({ error: false,  message: "contact added successfully!", data: contact });
+            }
         });
     }
 };

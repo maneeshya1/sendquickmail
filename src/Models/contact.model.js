@@ -66,7 +66,7 @@ contact.create = async (contact, result) => {
             }
         }
     };
-    let data = { newllyAdded: contactValues, alreadyExists: contactValues_NotAdded }
+    let data = {success:true, newllyAdded: contactValues, alreadyExists: contactValues_NotAdded }
 
     // return resp.status(201).json({
     //     success: true,
