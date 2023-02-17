@@ -14,16 +14,16 @@ exports.register = async (req, res, next) => {
 
   try {
 
-////---------------------------already exists--------------------------------------------------------------
-const [rowFindUser] = await conn.execute('SELECT * FROM invite_users WHERE email = ?', [req.body.Email])
-console.log('.................................',rowFindUser);
-if (rowFindUser?.length > 0) {
-  return res.json({
-    message: "Email is already exists",
-    success: false,
-  });
-}
-//-------------------------------------------------------------------------------------------------------
+    ////---------------------------already exists--------------------------------------------------------------
+    const [rowFindUser] = await conn.execute('SELECT * FROM invite_users WHERE email = ?', [req.body.Email])
+    console.log('.................................', rowFindUser);
+    if (rowFindUser?.length > 0) {
+      return res.json({
+        message: "Email is already exists",
+        success: false,
+      });
+    }
+    //-------------------------------------------------------------------------------------------------------
 
     const hashPass = await bcrypt.hash(req.body.Password, 12);
 
@@ -76,7 +76,7 @@ if (rowFindUser?.length > 0) {
 
           "<br>Please find the Login Credentials below for completing your Registration Process:<br>" +
 
-          "<br>Display name:" + " " + req.body.Name + 
+          "<br>Display name:" + " " + req.body.Name +
           "<br>Email:" + "  " + req.body.Email +
           "<br>Username:" + " " + req.body.Username +
           "<br>Password:" + " " + req.body.Password + "<br><br>" +
@@ -100,17 +100,17 @@ if (rowFindUser?.length > 0) {
 
       });
 
-    const [rows1] = await conn.execute('SELECT * FROM invite_users WHERE email = ?',[req.body.Email])
-       
+      const [rows1] = await conn.execute('SELECT * FROM invite_users WHERE email = ?', [req.body.Email])
 
 
-     console.log(',,,,,,,,,,,,,,,,,,lwekjfklewh',rows1);
+
+      console.log(',,,,,,,,,,,,,,,,,,lwekjfklewh', rows1);
       //................
       return res.status(201).json({
         message: "The user has been successfully inserted. and Email has been sent",
-        Data:rows1[0],
+        Data: rows1[0],
         success: true,
-        
+
       });
     }
 
