@@ -11,6 +11,7 @@ const { ContactDetails } = require("../login controllers/ContactDetails.js");
 const {
   ContactDetailsEdit,
 } = require("../login controllers/ContactDetails.js");
+const { GetContactDetails } = require("../login controllers/GetContactDetails");
 const { UserRoles } = require("../login controllers/UserRoleMaster.js");
 // const{Campaign}=require('../login controllers/UserRoleMaster.js')
 const { Campaign } = require("../login controllers/Campaign.js");
@@ -86,7 +87,7 @@ router.put('/subs/company', CompanyDetailsEdit);
 
 router.post('/contact', ContactDetails);
 router.put('/contact/edit', ContactDetailsEdit);
-
+router.post('/GetContactDetails/Id=?',GetContactDetails);
 
 router.post('/userRole', UserRoles);
 
