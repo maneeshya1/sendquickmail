@@ -1,4 +1,5 @@
 const dbConn = require('./../../config/db.config').promise();
+const dbConn_WP = require('./../../config/db.config');
 
 // exports.GetContactDetails = (req, res) => {
 //         dbConn.query('SELECT `user_Details`,`contact_Email` FROM `tbl_contactdetails` WHERE `contact_Email`= ?', [req.params.contact_Email], (err, rows, fields) => {
