@@ -26,20 +26,20 @@ exports.GetContactDetails = async (req, res, next) => {
         try {
           console.log("execute....");
           const [row_a] = await dbConn.execute(
-            "SELECT * FROM `tbl_contactdetails` WHERE `contact_id`= ?",
-            [req.body.contact_id]
+            "SELECT * FROM `tbl_contactdetails` WHERE `company_Id`= ?",
+            [req.body.company_Id]
           );
           console.log("tbl_contactdetails..............", row_a);
           if (row_a.length > 0) {
             return res.json({
               success: "true",
-              message: "contact Id matched Successfully",
-              data: row_a[0],
+              message: "company Id matched Successfully",
+              data: row_a,
             });
           } else {
             return res.json({
               status: 404,
-              message: "Invalid contact Id ",
+              message: "Invalid company Id ",
             });
           }
         } catch (err) {
