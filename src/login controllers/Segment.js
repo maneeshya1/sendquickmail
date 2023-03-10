@@ -33,17 +33,19 @@ exports.Segment = async (req, res, next) => {
     }
     
     const [rows] = await dbConn.execute(
+     
 
-      'insert into tbl_segment (`segmentName`,`criteria`,`contactfieldType`,`FieldfindBy`,`Is_And`,`Is_Or`,`company_Id`,`UserId`,`IsActive`) values(?,?,?,?,?,?,?,?,?)',
+      'insert into tbl_segment (`segmentName`,`criteria`,`contactfieldType`,`FieldfindBy`,`Is_And`,`Is_Or`,`contains`,`segment_users`,`company_Id`,`UserId`,`IsActive`) values(?,?,?,?,?,?,?,?,?,?,?)',
 
       [
-       
         req.body.segmentName,
-        req.body.criteria, 
+        req.body.criteria,
         req.body.contactfieldType,
         req.body.FieldfindBy,
-        req.body.Is_And, 
-        req.body.Is_Or, 
+        req.body.Is_And,
+        req.body.Is_Or,
+        req.body.contains,
+        req.body.segment_users,
         req.body.company_Id,
         req.body.UserId,
         req.body.IsActive,
