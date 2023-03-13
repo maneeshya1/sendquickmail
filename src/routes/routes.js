@@ -15,6 +15,8 @@ const {
   ContactUnSubscribe,
 } = require("../login controllers/ContactDetails.js");
 const { GetContactDetails } = require("../login controllers/GetContactDetails");
+const { Get_TodayContactDetails } = require("../login controllers/GetContactDetails");
+
 const { UserRoles } = require("../login controllers/UserRoleMaster.js");
 // const{Campaign}=require('../login controllers/UserRoleMaster.js')
 const { Campaign } = require("../login controllers/Campaign.js");
@@ -95,6 +97,7 @@ router.put("/subs/company", CompanyDetailsEdit);
 router.post("/contact", ContactDetails);
 router.put("/contact/edit", ContactDetailsEdit);
 router.post("/GetContactDetails/Id=?", GetContactDetails);
+router.post("/GetContactDetails/created_Date=?", Get_TodayContactDetails);
 router.put("/ContactUnSubscribe/ByEmail", ContactUnSubscribe);
 
 router.post("/userRole", UserRoles);

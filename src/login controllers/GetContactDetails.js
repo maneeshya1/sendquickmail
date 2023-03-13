@@ -1,5 +1,4 @@
 const dbConn = require('./../../config/db.config').promise();
-const dbConn_WP = require('./../../config/db.config');
 
 // exports.GetContactDetails = (req, res) => {
 //         dbConn.query('SELECT `user_Details`,`contact_Email` FROM `tbl_contactdetails` WHERE `contact_Email`= ?', [req.params.contact_Email], (err, rows, fields) => {
@@ -41,6 +40,33 @@ exports.GetContactDetails = async (req, res, next) => {
             return res.json({
               status: 404,
               message: "Invalid company Id ",
+            });
+          }
+        } catch (err) {
+          console.log("err...", err);
+          next(err);
+        }
+      };
+
+      exports.Get_TodayContactDetails = async (req, res, next) => {
+        try {
+          console.log("execute....");
+          const [row_a] = await dbConn.execute(
+            "SELECT * FROM `tbl_contactdetails` WHERE `created_Date`= ?",
+            [req.body.created_Date]
+          );
+          console.log("tbl_contactdetails..............", row_a);
+          if (row_a.length > 0) {
+            return res.json({
+              success: "true",
+              message: "created_Date matched Successfully",
+              data: row_a,
+              //////----------------------------------------
+            });
+          } else {
+            return res.json({
+              status: 404,
+              message: "Invalid created_Date ",
             });
           }
         } catch (err) {
