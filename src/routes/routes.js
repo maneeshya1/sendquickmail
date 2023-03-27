@@ -27,6 +27,8 @@ const { UpdateSegment } = require("../login controllers/Segment");
 const { getSegment } = require("../login controllers/getSegment");
 const { GetTemplate } = require("../login controllers/GetTemplate");
 const { Mail } = require('../login controllers/Mail');
+const{Fileupload}=require('../login controllers/Fileupload.js');
+const{List}=require('../login controllers/List.js')
 
 const {
   getScheduler,
@@ -106,6 +108,8 @@ router.post("/GetContactDetails/created_Date=?", Get_TodayContactDetails);
 router.put("/ContactUnSubscribe/ByEmail", ContactUnSubscribe);
 
 router.post("/userRole", UserRoles);
+router.post('/Fileupload',Fileupload);
+router.post('/List',List);
 
 router.post("/Campaign", Campaign);
 router.put("/Campaign/edit", CampaignDetailsEdit);
@@ -113,6 +117,7 @@ router.put("/Campaign/edit", CampaignDetailsEdit);
 router.post("/Segment", Segment);
 router.put("/UpdateSegment", UpdateSegment);
 router.get("/getSegment", getSegment);
+
 // template.................................................
 router.get("/getTemplate", GetTemplate);
 
