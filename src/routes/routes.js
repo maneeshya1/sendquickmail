@@ -16,6 +16,7 @@ const {
 } = require("../login controllers/ContactDetails.js");
 const { GetContactDetails } = require("../login controllers/GetContactDetails");
 const { Get_TodayContactDetails } = require("../login controllers/GetContactDetails");
+const { GetAllContactDetails } = require("../login controllers/GetAllContactDetails");
 
 const { UserRoles } = require("../login controllers/UserRoleMaster.js");
 // const{Campaign}=require('../login controllers/UserRoleMaster.js')
@@ -24,6 +25,8 @@ const { CampaignDetailsEdit } = require("../login controllers/Campaign.js");
 const { Segment } = require("../login controllers/Segment.js");
 const { UpdateSegment } = require("../login controllers/Segment");
 const { getSegment } = require("../login controllers/getSegment");
+const { GetTemplate } = require("../login controllers/GetTemplate");
+const { Mail } = require('../login controllers/Mail');
 
 const {
   getScheduler,
@@ -97,6 +100,8 @@ router.put("/subs/company", CompanyDetailsEdit);
 router.post("/contact", ContactDetails);
 router.put("/contact/edit", ContactDetailsEdit);
 router.post("/GetContactDetails/Id=?", GetContactDetails);
+router.get("/GetAllContactDetails", GetAllContactDetails);
+
 router.post("/GetContactDetails/created_Date=?", Get_TodayContactDetails);
 router.put("/ContactUnSubscribe/ByEmail", ContactUnSubscribe);
 
@@ -108,8 +113,10 @@ router.put("/Campaign/edit", CampaignDetailsEdit);
 router.post("/Segment", Segment);
 router.put("/UpdateSegment", UpdateSegment);
 router.get("/getSegment", getSegment);
+router.get("/getTemplate", GetTemplate);
 
 router.get("/getall", getAllUser);
+router.post('/mail',Mail);
 // router.get('/GetContact/:contact_Email', GetContact);
 
 // router.post('/Campaign',Campaign);
