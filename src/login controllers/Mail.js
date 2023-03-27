@@ -3,7 +3,17 @@ const cron = require("node-cron");
 var nodemailer = require("nodemailer");
 const { request } = require('express');
 
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('myTotallySecretKey')
+
+
 exports.Mail = async (req, res, next) => {
+
+
+
+   const encryptedString = await cryptr.encrypt(req.body.pass); //info pass decrpt     
+  const decry =await cryptr.decrypt(encryptedString);
+    console.log("decryptedString", encryptedString);
   var transporter = nodemailer.createTransport({
     host: "smtp-mail.outlook.com", // hostname
     secureConnection: false, // TLS requires secureConnection to be false
@@ -12,8 +22,8 @@ exports.Mail = async (req, res, next) => {
       ciphers: 'SSLv3'
     },
     auth: {
-      user: 'maneesh.yadav@cylsys.com',
-      pass: 'Micromax@2'
+      user:req.body.user,
+      pass:decry
     }
   });
 
