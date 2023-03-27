@@ -1,4 +1,6 @@
 const dbConn = require('./../../config/db.config')
+
+// .............template.......................................
 exports.GetTemplate = (req, res) => {
     dbConn.query('SELECT template_Name FROM tbl_template ', (err, rows, fields) => {
             if (!err)

@@ -113,6 +113,7 @@ router.put("/Campaign/edit", CampaignDetailsEdit);
 router.post("/Segment", Segment);
 router.put("/UpdateSegment", UpdateSegment);
 router.get("/getSegment", getSegment);
+// template.................................................
 router.get("/getTemplate", GetTemplate);
 
 router.get("/getall", getAllUser);
