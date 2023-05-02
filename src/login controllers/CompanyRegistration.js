@@ -32,7 +32,7 @@ exports.CompanyRegistration = async (req, res, next) => {
     if (rows.affectedRows === 1) {
       return res.status(201).json({
         success: true,
-        message: "The user has been successfully inserted.",
+        message: "The company details has been successfully inserted.",
         data: rows,
       });
     }
@@ -77,6 +77,7 @@ exports.CompanyDetailsEdit = async (req, res, next) => {
         req.body.company_Id,
 
       ]);
+
     if (rows1.affectedRows === 1) {
       return res.status(201).json({
         message: "The company details has been successfully updated.",

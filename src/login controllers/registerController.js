@@ -107,7 +107,7 @@ exports.register = async (req, res, next) => {
       console.log(',,,,,,,,,,,,,,,,,,lwekjfklewh', rows1);
       //................
       return res.status(201).json({
-        message: "The user has been successfully inserted. and Email has been sent",
+        message: "The user has been successfully inserted",
         Data: rows1[0],
         success: true,
 
