@@ -48,7 +48,7 @@ app.use(function (req, res, next) {
 const routes = require('./src/routes/routes');
 const routes1 = require('./src/routes/contact.route');
 const routes2 = require('./src/routes/NewGetSegment');
- 
+const routes3 = require('./src/routes/company');
 // -----------------------
 const DeleteSegmentRoutes = require('./src/routes/DeleteSegment.route');
 
@@ -59,6 +59,7 @@ app.use('/DeleteSegment', DeleteSegmentRoutes);
 app.use(routes);
 app.use(routes1);
 app.use(routes2);
+app.use(routes3);
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
