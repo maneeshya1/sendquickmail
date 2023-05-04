@@ -10,7 +10,7 @@ router.get('/company/getAll',Jobs.findAll);
 router.post('/create', Jobs.create);
 
 // Retrieve a single employee with id
-// router.get('/=:id', Jobs.findById);
+router.get('/company/:company_Id', Jobs.findById);
 
 // Update a employee with id
 router.post('/company', Jobs.update);

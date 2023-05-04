@@ -37,17 +37,17 @@ Employee.create = function (newLeaves, result) {
 };
 //
 
-//   Employee.findById = function (id, result) {
-//     dbConn.query("Select * from tbl_post_jobs where id = ? ", id, function (err, res) {
-//       if (err) {
-//         console.log("error: ", err);
-//         result(err, null);
-//       }
-//       else {
-//         result(null, res);
-//       }
-//     });
-//   };
+  Employee.findById = function (id, result) {
+    dbConn.query("Select * from company_ragistration where company_Id = ? ", id, function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+      }
+      else {
+        result(null, res);
+      }
+    });
+  };
 
 
 Employee.findAll = function (result) {

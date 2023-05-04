@@ -36,14 +36,19 @@ exports.create = function (req, res) {
             });
         }
 };
-// exports.findById = function (req, res) {
+
+
+exports.findById = function (req, res) {
    
-//         Employee.findById(req.params.id, function (err, employee) {
-//             if (err)
-//                 res.send(err);
-//             res.json(employee);
-//         });
-// };
+        Employee.findById(req.params.company_Id, function (err, employee) {
+            if (err)
+                res.send(err);
+            res.json(employee);
+        });
+};
+
+
+
 exports.update = function (req, res) {
    
         const new_employee = new Employee(req.body);
