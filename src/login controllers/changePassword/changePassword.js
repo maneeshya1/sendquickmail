@@ -13,7 +13,8 @@ exports.ChangePassword = async (req, res, next) => {
       // let dbUser = await getUserByUserId(user.userId);
       let [dbUser] = await dbConn.execute(
         // "SELECT * FROM `users` WHERE `Email`=?",
-        "SELECT * FROM `invite_users` WHERE `UserId`=?",
+        // "SELECT * FROM `invite_users` WHERE `UserId`=?",
+        'call sendquickmail_db.check_user_email_new_final(?)',
         [req.body.UserId]
       );
       if (dbUser.length === 0) {
@@ -40,7 +41,9 @@ exports.ChangePassword = async (req, res, next) => {
         // delete updatedUser["Password"];
 
         const [rows1] = await dbConn.execute(
-          "UPDATE `invite_users` SET `Password`=?  WHERE `UserId` = ?",
+          // "UPDATE `invite_users` SET `Password`=?  WHERE `UserId` = ?",
+          'call sendquickmail_db.ChangePassword(?,?)'
+
           [hash, req.body.UserId]
         );
         if (rows1.affectedRows === 1) {

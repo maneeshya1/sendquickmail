@@ -29,7 +29,7 @@ exports.register = async (req, res, next) => {
 
 
     // const [rows] = await conn.execute('INSERT INTO `users`(`FirstName`,`LastName`,`Email`,`Password`)VALUES(?,?,?,?)',
-    const [rows] = await conn.execute('INSERT INTO `invite_users`(`Name`,`Username`,`Email`,`Password`)VALUES(?,?,?,?)',
+    const [rows] = await conn.execute('call sendquickmail_db.Ragistration (?,?,?,?)',
       // const [rows] = await conn.execute('INSERT INTO `registration`(`name`,`email`,`username`,`password`)VALUES(?,?,?,?)',
 
       [

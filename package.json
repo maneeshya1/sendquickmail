@@ -20,6 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "async": "^1.5.2",
+    "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "big-integer": "^1.6.51",
     "body-parser": "^1.19.0",
@@ -38,10 +39,9 @@
     "mysql2": "^2.3.3",
     "node-cron": "^3.0.2",
     "node-mysql": "^0.4.2",
-    "nodemailer": "^6.8.0",
-    "nodemon": "^2.0.20"
+    "nodemailer": "^6.8.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.22"
   }
 }

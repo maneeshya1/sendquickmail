@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const { body } = require("express-validator");
 const { register } = require("../login controllers/registerController.js");
-const { login } = require("../login controllers/loginController.js");
-// const {getUser} = require('./controllers/getUserController');
+const  {login}  = require("../login controllers/loginController.js");
+const {getUser} = require('../login controllers/getUserController_notused.js');
 const { getUserName } = require("../login controllers/getcontroller.js");
 const {
   CompanyRegistration,
@@ -94,6 +94,8 @@ router.post(
   login
 );
 
+router.get("/getUser", getUser);
+
 router.get("/getoneuser/:Email", getUserName);
 
 router.post("/subs", CompanyRegistration);
@@ -136,8 +138,8 @@ router.post("/addSchedule", addScheduler);
 router.get("/getAllScheduler", getAllScheduler);
 // router.get('/getScheduler/:scheduler_Id',getScheduler);
 
-// router.get("/allCompaniesByUserId/UserId:UserId", getUserCompanyDataByUserId);
-router.post("/allCompaniesByUserId/UserId:UserId", getUserCompanyDataByUserId);
+router.get("/allCompaniesByUserId/:UserId", getUserCompanyDataByUserId);
+// router.post("/allCompaniesByUserId/UserId:UserId", getUserCompanyDataByUserId);
 
 //////////////
 router.post("/addList_of_TimeZone", addList_of_TimeZone);

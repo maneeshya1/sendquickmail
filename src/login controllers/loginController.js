@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
-const dbConn = require('./../../config/db.config').promise();
+const dbConn = require('../../config/db.config').promise();
 
 exports.login = async (req, res, next) => {
   const errors = validationResult(req);
@@ -14,9 +14,12 @@ exports.login = async (req, res, next) => {
     const [row] = await dbConn.execute(
       // "SELECT * FROM `users` WHERE `Email`=?",
       "SELECT * FROM `invite_users` WHERE `Email`=?",
+      // 'call sendquickmail_db.check_user_email_new_final(?)', 
 
       [req.body.Email]
     );
+
+    console.log(req.body.Email);
 
     if (row.length === 0) {
       // return res.status(422).json({
@@ -35,9 +38,9 @@ exports.login = async (req, res, next) => {
       });
     }
 
-    const theToken = jwt.sign({ id: row[0].id }, "the-super-strong-secrect", {
-      expiresIn: "1h",
-    });
+    console.log('row[0].id................',row);
+    const theToken = jwt.sign({user_id:row[0].UserId},process.env.SECRET_KEY,{ expiresIn: '10h' });
+
 
     return res.json({
       success: true,
