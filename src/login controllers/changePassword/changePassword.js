@@ -42,8 +42,8 @@ exports.ChangePassword = async (req, res, next) => {
         // delete updatedUser["Password"];
 
         const [rows1] = await dbConn.execute(
-          // "UPDATE `invite_users` SET `Password`=?  WHERE `UserId` = ?",
-          'call sendquickmail_db.ChangePassword(?,?)'
+          "UPDATE `invite_users` SET `Password`=?  WHERE `UserId` = ?",
+          // 'call sendquickmail_db.ChangePassword(?,?)'
 
           [hash, req.body.UserId]
         );
