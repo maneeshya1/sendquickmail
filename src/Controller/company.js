@@ -49,6 +49,18 @@ exports.findById = function (req, res) {
 
 
 
+exports.findByUserID = function (req, res) {
+   
+    Employee.findByUserID(req.params.UserId, function (err, employee) {
+        if (err)
+            res.send(err);
+        res.json(employee);
+    });
+};
+
+
+
+
 exports.update = function (req, res) {
    
         const new_employee = new Employee(req.body);

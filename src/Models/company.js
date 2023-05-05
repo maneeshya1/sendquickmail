@@ -49,6 +49,19 @@ Employee.create = function (newLeaves, result) {
     });
   };
 
+  Employee.findByUserID = function (id, result) {
+    dbConn.query("Select * from company_ragistration where UserId = ? ", id, function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+      }
+      else {
+        result(null, res);
+      }
+    });
+  };
+
+
 
 Employee.findAll = function (result) {
   console.log("Mmmmmmmm", result);
