@@ -13,8 +13,8 @@ exports.ChangePassword = async (req, res, next) => {
       // let dbUser = await getUserByUserId(user.userId);
       let [dbUser] = await dbConn.execute(
         // "SELECT * FROM `users` WHERE `Email`=?",
-        // "SELECT * FROM `invite_users` WHERE `UserId`=?",
-        'call sendquickmail_db.check_user_email_new_final(?)',
+        "SELECT * FROM `invite_users` WHERE `UserId`=?",
+        // 'call sendquickmail_db.check_user_email_new_final(?)',
         [req.body.UserId]
       );
       if (dbUser.length === 0) {
@@ -32,8 +32,8 @@ exports.ChangePassword = async (req, res, next) => {
       } else if (!dbUser[0]?.IsActive) {
         // throw { message: "User account is deactivated", code: 404 };
         return res.json({
-          // message: "User has been DeActivated",
-          message:"Password has Updated successfully",
+          message: "User has been DeActivated",
+          // message:"Password has Updated successfully",
         });
       } else if (bcrypt.compareSync(oldPassword, dbUser[0]?.Password)) {
         const hash = await bcrypt.hashSync(newPassword, 10);
