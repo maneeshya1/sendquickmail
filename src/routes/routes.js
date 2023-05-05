@@ -138,8 +138,8 @@ router.post("/addSchedule", addScheduler);
 router.get("/getAllScheduler", getAllScheduler);
 // router.get('/getScheduler/:scheduler_Id',getScheduler);
 
-router.get("/allCompaniesByUserId/:UserId", getUserCompanyDataByUserId);
-// router.post("/allCompaniesByUserId/UserId:UserId", getUserCompanyDataByUserId);
+
+router.post("/allCompaniesByUserId/UserId:UserId", getUserCompanyDataByUserId);
 
 //////////////
 router.post("/addList_of_TimeZone", addList_of_TimeZone);
