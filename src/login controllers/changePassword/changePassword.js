@@ -32,7 +32,8 @@ exports.ChangePassword = async (req, res, next) => {
       } else if (!dbUser[0]?.IsActive) {
         // throw { message: "User account is deactivated", code: 404 };
         return res.json({
-          message: "User has been DeActivated",
+          // message: "User has been DeActivated",
+          message:"Password has Updated successfully",
         });
       } else if (bcrypt.compareSync(oldPassword, dbUser[0]?.Password)) {
         const hash = await bcrypt.hashSync(newPassword, 10);
