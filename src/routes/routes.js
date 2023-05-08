@@ -103,7 +103,7 @@ router.put("/subs/company", CompanyDetailsEdit);
 
 router.post("/contact", ContactDetails);
 router.put("/contact/edit", ContactDetailsEdit);
-router.post("/GetContactDetails/Id=?", GetContactDetails);
+router.post("/GetContactDetails/companyId=?", GetContactDetails);
 router.get("/GetAllContactDetails", GetAllContactDetails);
 
 router.post("/GetContactDetails/created_Date=?", Get_TodayContactDetails);

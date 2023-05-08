@@ -26,7 +26,8 @@ exports.GetContactDetails = async (req, res, next) => {
         try {
           console.log("execute....");
           const [row_a] = await dbConn.execute(
-            "SELECT * FROM `tbl_contactdetails` WHERE `company_Id`= ?",
+            // "SELECT * FROM `tbl_contactdetails` WHERE `company_Id`= ?",
+            'call sendquickmail_db.GetcontactDetails(?)',
             [req.body.company_Id]
           );
           console.log("tbl_contactdetails..............", row_a);
@@ -52,7 +53,8 @@ exports.GetContactDetails = async (req, res, next) => {
         try {
           console.log("execute....");
           const [row_a] = await dbConn.execute(
-            "SELECT * FROM `tbl_contactdetails` WHERE `created_Date`= ?",
+            // "SELECT * FROM `tbl_contactdetails` WHERE `created_Date`= ?",
+            'call sendquickmail_db.Get_TodayContactDetails(?)',
             [req.body.created_Date]
           );
           console.log("tbl_contactdetails..............", row_a);
