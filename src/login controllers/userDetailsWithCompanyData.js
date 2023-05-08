@@ -105,7 +105,8 @@ exports.updateUserByUserId = async (req, resp, next) => {
       console.log("getUserInfo.......", getUserInfo?.IsActive);
       console.log("UserIsActive....", UserIsActive);
       [rowUserUpdate] = await dbConn.execute(
-        "UPDATE `invite_users` SET `Name`=?, `Username`=?, `Email`=?, `UserPhoneNo`=?, `Designation`=?, `Company_Id`=? WHERE `UserId` = ?",
+        // "UPDATE `invite_users` SET `Name`=?, `Username`=?, `Email`=?, `UserPhoneNo`=?, `Designation`=?, `Company_Id`=? WHERE `UserId` = ?",
+        'call sendquickmail_db.update_registration(?,?,?,?,?,?,?)',
         [
           reqBody?.Name || getUserInfo?.Name,
           reqBody?.Username || getUserInfo?.Username,
@@ -128,7 +129,8 @@ exports.updateUserByUserId = async (req, resp, next) => {
         console.log("getCompanyrInfo.......", getCompanyrInfo?.isActive);
         console.log("CompanyIsActive....", CompanyIsActive);
         [rowCompanyUpdate] = await dbConn.execute(
-          "UPDATE `company_ragistration` SET `companyName`=?, `companyEmail`=?, `companyURL`=?, `remark`=?, `companyLocation`=?  WHERE `company_Id` = ?",
+          // "UPDATE `company_ragistration` SET `companyName`=?, `companyEmail`=?, `companyURL`=?, `remark`=?, `companyLocation`=?  WHERE `company_Id` = ?",
+          'call sendquickmail_db.edit_profile(?,?,?,?,?,?)',
           [
             reqBody?.companyName || getCompanyrInfo?.companyName,
             reqBody?.companyEmail || getCompanyrInfo?.companyEmail,
@@ -136,7 +138,7 @@ exports.updateUserByUserId = async (req, resp, next) => {
             reqBody?.remark || getCompanyrInfo?.remark,
             reqBody?.companyLocation || getCompanyrInfo?.companyLocation,
             // CompanyIsActive,
-            reqBody?.company_Id || getCompanyrInfo?.company_Id,
+            reqBody?.company_Id || getCompanyrInfo?.company_Id, 
           ]
         );
         console.log("rowCompanyUpdate........", rowCompanyUpdate);
