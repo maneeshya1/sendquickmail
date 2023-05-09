@@ -104,15 +104,23 @@ exports.UpdateSegment = async (req, res, next) => {
       });
     }
 
-    const [rows] = await dbConn.execute("UPDATE tbl_segment SET `segmentName` = ?, `criteria` = ?, `contactfieldType` = ?, `FieldfindBy` = ?, `Is_And` = ?, `Is_Or` = ?, `IsActive` = ? WHERE `segment_Id` = ?",
+    const [rows] = await dbConn.execute(
+      
+      // "UPDATE tbl_segment SET `segmentName` = ?, `criteria` = ?, `contactfieldType` = ?, `FieldfindBy` = ?, `Is_And` = ?, `Is_Or` = ?, `contains` = ?,`segment_users`= ?, `IsActive` = ? WHERE `segment_Id` = ?",
+      'call sendquickmail_db.Update_Segment(?,?,?,?,?,?,?,?,?,?,?,?)',
+
       [
         req.body.segmentName,
         req.body.criteria, 
         req.body.contactfieldType,
         req.body.FieldfindBy,
         req.body.Is_And, 
-        req.body.Is_Or, 
+        req.body.Is_Or,
+        req.body.contains,
+        req.body.segment_users, 
         req.body.IsActive,
+        req.body.UserId,
+        req.body.company_Id,
         req.body.segment_Id
       ]);
 
