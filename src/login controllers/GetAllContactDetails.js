@@ -12,7 +12,7 @@ const dbConn = require('./../../config/db.config')
 // };
 
 exports.GetAllContactDetails = (req, res) => {
-        dbConn.query('SELECT * FROM tbl_contactdetails ', (err, rows, fields) => {
+        dbConn.query('call sendquickmail_db.GetAllContactDetails() ', (err, rows, fields) => {
                 if (!err)
                         res.send(rows);
                 else {
