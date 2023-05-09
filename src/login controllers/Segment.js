@@ -35,8 +35,9 @@ exports.Segment = async (req, res, next) => {
     const [rows] = await dbConn.execute(
      
 
-      'insert into tbl_segment (`segmentName`,`criteria`,`contactfieldType`,`FieldfindBy`,`Is_And`,`Is_Or`,`contains`,`segment_users`,`company_Id`,`UserId`,`IsActive`) values(?,?,?,?,?,?,?,?,?,?,?)',
+      // 'insert into tbl_segment (`segmentName`,`criteria`,`contactfieldType`,`FieldfindBy`,`Is_And`,`Is_Or`,`contains`,`segment_users`,`company_Id`,`UserId`,`IsActive`) values(?,?,?,?,?,?,?,?,?,?,?)',
 
+      'call sendquickmail_db.CreateSegment(?,?,?,?,?,?,?,?,?,?,?)',
       [
         req.body.segmentName,
         req.body.criteria,
