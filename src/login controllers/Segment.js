@@ -19,7 +19,8 @@ exports.Segment = async (req, res, next) => {
       });
     }
     const [row1] = await dbConn.execute(
-      "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+      // "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+      'call sendquickmail_db.GetCompanyId(?)',
       [req.body.company_Id],
 
     );
@@ -92,7 +93,8 @@ exports.UpdateSegment = async (req, res, next) => {
       });
     }
     const [row1] = await dbConn.execute(
-      "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+      // "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+      'call sendquickmail_db.GetCompanyId(?)',
       [req.body.company_Id],
 
     );

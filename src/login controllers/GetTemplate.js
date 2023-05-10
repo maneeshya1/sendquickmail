@@ -2,7 +2,7 @@ const dbConn = require('./../../config/db.config')
 
 // .............template.......................................
 exports.GetTemplate = (req, res) => {
-    dbConn.query('SELECT template_Name FROM tbl_template ', (err, rows, fields) => {
+    dbConn.query('call sendquickmail_db.Gat_template_Name()', (err, rows, fields) => {
             if (!err)
                     res.send(rows);
             else {
