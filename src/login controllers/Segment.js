@@ -174,3 +174,31 @@ exports.GetSegmentbyId = async (req, res, next) => {
     next(err);
   }
 };
+
+
+exports.GetSegmentbyUserId = async (req, res, next) => {
+  try {
+    console.log("execute....");
+    const [row_a] = await dbConn.execute(
+      // "SELECT * FROM `tbl_segment` WHERE `UserId`= ?",
+      'call sendquickmail_db.GetSegmentbyUserid(?)',
+      [req.body.UserId]
+    );
+    console.log("tbl_segmentdetails..............", row_a);
+    if (row_a.length > 0) {
+      return res.json({
+        success: "true",
+        message: "User Id matched Successfully",
+        data: row_a[0],
+      });
+    } else {
+      return res.json({
+        status: 404,
+        message: "Invalid User Id ",
+      });
+    }
+  } catch (err) {
+    console.log("err...", err);
+    next(err);
+  }
+};
