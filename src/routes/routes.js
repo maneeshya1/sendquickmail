@@ -24,6 +24,7 @@ const { Campaign } = require("../login controllers/Campaign.js");
 const { CampaignDetailsEdit } = require("../login controllers/Campaign.js");
 const { Segment } = require("../login controllers/Segment.js");
 const { UpdateSegment } = require("../login controllers/Segment");
+const { GetSegmentbyId } = require("../login controllers/Segment.js");
 const { getSegment } = require("../login controllers/getSegment");
 const { GetTemplate } = require("../login controllers/GetTemplate");
 const { Mail } = require('../login controllers/Mail');
@@ -119,6 +120,8 @@ router.put("/Campaign/edit", CampaignDetailsEdit);
 router.post("/Segment", Segment);
 router.put("/UpdateSegment", UpdateSegment);
 router.get("/getSegment", getSegment);
+router.get("/getSegment/segmentId=?", GetSegmentbyId);
+
 
 // template.................................................
 router.get("/getTemplate", GetTemplate);

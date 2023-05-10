@@ -147,3 +147,30 @@ exports.UpdateSegment = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.GetSegmentbyId = async (req, res, next) => {
+  try {
+    console.log("execute....");
+    const [row_a] = await dbConn.execute(
+      // "SELECT * FROM `tbl_segment` WHERE `segment_Id`= ?",
+      'call sendquickmail_db.Get_SegmentbyId(?)',
+      [req.body.segment_Id]
+    );
+    console.log("tbl_segmentdetails..............", row_a);
+    if (row_a.length > 0) {
+      return res.json({
+        success: "true",
+        message: "segment Id matched Successfully",
+        data: row_a[0],
+      });
+    } else {
+      return res.json({
+        status: 404,
+        message: "Invalid segment Id ",
+      });
+    }
+  } catch (err) {
+    console.log("err...", err);
+    next(err);
+  }
+};
