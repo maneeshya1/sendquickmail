@@ -84,7 +84,8 @@ exports.updateUserByUserId = async (req, resp, next) => {
       getUserInfo = { ...rowUser[0] };
 
       const [rowCompany] = await dbConn.execute(
-        "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+        // "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+        'call sendquickmail_db.GetCompanyId(?)',
         [reqBody?.company_Id]
       );
       console.log("rowCompany...", rowCompany[0]);

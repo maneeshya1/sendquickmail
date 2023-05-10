@@ -38,7 +38,7 @@ Employee.create = function (newLeaves, result) {
 //
 
   Employee.findById = function (id, result) {
-    dbConn.query("Select * from company_ragistration where company_Id = ? ", id, function (err, res) {
+    dbConn.query('call sendquickmail_db.GetCompanyId(?)', id, function (err, res) {
       if (err) {
         console.log("error: ", err);
         result(err, null);
