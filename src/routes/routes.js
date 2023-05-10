@@ -121,8 +121,8 @@ router.put("/Campaign/edit", CampaignDetailsEdit);
 router.post("/Segment", Segment);
 router.put("/UpdateSegment", UpdateSegment);
 router.get("/getSegment", getSegment);
-router.get("/getSegment/segmentId=?", GetSegmentbyId);
-router.get("/getSegment/UserId=?", GetSegmentbyUserId);
+router.post("/getSegment/segmentId=?", GetSegmentbyId);
+router.post("/getSegment/UserId=?", GetSegmentbyUserId);
 
 
 // template.................................................
