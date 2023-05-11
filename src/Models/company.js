@@ -56,7 +56,7 @@ Employee.create = function (newLeaves, result) {
         result(err, null);
       }
       else {
-        result(null, res[0]);
+        result(null, res);
       }
     });
   };
