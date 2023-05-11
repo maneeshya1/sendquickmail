@@ -76,12 +76,13 @@ exports.Segment = async (req, res, next) => {
   }
 };
 
-
+//------------------------------------------------------------------------------------------
 exports.UpdateSegment = async (req, res, next) => {
 
   try {
     const [row] = await dbConn.execute(
       // "SELECT * FROM `users` WHERE `Email`=?",
+
       "SELECT * FROM `invite_users` WHERE `UserId`=?",
       [req.body.UserId],
     );
@@ -108,8 +109,8 @@ exports.UpdateSegment = async (req, res, next) => {
 
     const [rows] = await dbConn.execute(
       
-      "UPDATE tbl_segment SET `segmentName` = ?, `criteria` = ?, `contactfieldType` = ?, `FieldfindBy` = ?, `Is_And` = ?, `Is_Or` = ?, `contains` = ?,`segment_users`= ?, `IsActive` = ? ,`UserId` = ?,`company_Id` = ? WHERE `segment_Id` = ?",
-      // 'call sendquickmail_db.Update_Segment(?,?,?,?,?,?,?,?,?,?,?,?)',
+      // "UPDATE tbl_segment SET `segmentName` = ?, `criteria` = ?, `contactfieldType` = ?, `FieldfindBy` = ?, `Is_And` = ?, `Is_Or` = ?, `contains` = ?,`segment_users`= ?, `IsActive` = ? ,`UserId` = ?,`company_Id` = ? WHERE `segment_Id` = ?",
+      'call sendquickmail_db.Update_Segment(?,?,?,?,?,?,?,?,?,?,?,?)',
 
       [
         req.body.segmentName,
