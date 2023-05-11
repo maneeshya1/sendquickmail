@@ -54,7 +54,7 @@ exports.findByUserID = function (req, res) {
     Employee.findByUserID(req.params.UserId, function (err, employee) {
         if (err)
             res.send(err);
-        res.json(employee);
+        res.json(employee[0]);
     });
 };
 
