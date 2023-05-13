@@ -35,7 +35,7 @@ exports.GetContactDetails = async (req, res, next) => {
             return res.json({
               success: "true",
               message: "company Id matched Successfully",
-              data: row_a,
+              data: row_a[0],
             });
           } else {
             return res.json({
