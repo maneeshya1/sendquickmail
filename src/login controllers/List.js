@@ -18,7 +18,8 @@ exports.List = async (req, res, next) => {
       });
     }
     const [row1] = await dbConn.execute(
-      "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+      // "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+      'call sendquickmail_db.GetCompanyId(?)',
       [req.body.company_Id],
 
     );
@@ -32,7 +33,8 @@ exports.List = async (req, res, next) => {
     
     const [rows] = await dbConn.execute(
 
-      'insert into tbl_list (`list_Id`,`list_Name`,`UserId`,`company_Id`,`IsActive`) values(?,?,?,?,?)',
+      // 'insert into tbl_list (`list_Id`,`list_Name`,`UserId`,`company_Id`,`IsActive`) values(?,?,?,?,?)',
+      'call sendquickmail_db.CreateList(?,?,?,?,?)',
 
       [
         req.body.list_Id,
