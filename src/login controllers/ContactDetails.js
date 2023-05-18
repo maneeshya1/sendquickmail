@@ -1,9 +1,20 @@
 const dbConn = require("../../config/db.config").promise();
 exports.ContactDetails = async (req, res, next) => {
   try {
+
+    const [rowFindUser] = await conn.execute('SELECT * FROM tbl_contactdetails WHERE contact_Email = ?', [req.body.contact_Email])
+    console.log('.................................', rowFindUser);
+    if (rowFindUser?.length > 0) {
+      return res.json({
+        message: "Email is already exists",
+        success: false,
+      });
+    }
+
     const [row] = await dbConn.execute(
       // "SELECT * FROM `users` WHERE `Email`=?",
-      "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+      // "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+      'call sendquickmail_db.GetCompanyId(?)',
 
       [req.body.company_Id]
     );
@@ -13,6 +24,8 @@ exports.ContactDetails = async (req, res, next) => {
         message: "Invalid company_Id",
       });
     }
+
+    //
     const [rows] = await dbConn.execute(
       // "insert into tbl_contactdetails (`firstName`,`lastName`,`contact_Email`,`user_Details`,`file_UploadId`,`IsActive`,`list_Id`,`company_Id`,`contact_Number`) values(?,?,?,?,?,?,?,?,?)",
       'call sendquickmail_db.Contactdetails(?,?,?,?,?,?,?,?,?)',
@@ -93,6 +106,19 @@ exports.ContactDetailsEdit = async (req, res, next) => {
 exports.ContactUnSubscribe = async (req, res, next) => {
   console.log("contact_Email.......", req?.body?.contact_Email);
   try {
+
+    const [isCompanyFound] = await dbConn.execute(
+      // "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+      'call sendquickmail_db.GetCompanyId(?)',
+      [req.body.company_Id]
+    );
+
+    if (isCompanyFound.length === 0) {
+      // return res.status(422).json({
+      return res.json({
+        message: "Invalid company_Id",
+      });
+    }
     const [row] = await dbConn.execute(
       // "SELECT * FROM `tbl_contactdetails` WHERE `contact_Email`=?",
       "SELECT * FROM `tbl_contactdetails`  WHERE `contact_Email`= ?",
@@ -116,7 +142,7 @@ exports.ContactUnSubscribe = async (req, res, next) => {
       throw { message: 'isActive should be boolena' }
     }
 
-    console.log('jbb bib jbi000000000',typeof checkValue);
+    console.log('jbb bib jbi000000000', typeof checkValue);
     const [rows1] = await dbConn.execute(
       // "UPDATE tbl_contactdetails SET `IsActive`=?  WHERE `contact_Email` = ?",
       'call sendquickmail_db.Unsubscribe(?,?)',
