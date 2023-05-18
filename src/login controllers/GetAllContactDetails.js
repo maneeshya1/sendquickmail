@@ -21,3 +21,14 @@ exports.GetAllContactDetails = (req, res) => {
                 }
         })
 };
+
+exports.GetAllContactEmails = (req, res) => {
+        dbConn.query('SELECT contact_Email FROM tbl_contactdetails', (err, rows, fields) => {
+                if (!err)
+                        res.send(rows);
+                else {
+                        res.send(err);
+                        console.log("user not exist");
+                }
+        })
+};
