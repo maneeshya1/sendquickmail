@@ -2,7 +2,7 @@ const dbConn = require("../../config/db.config").promise();
 exports.ContactDetails = async (req, res, next) => {
   try {
 
-    const [rowFindUser] = await conn.execute('SELECT * FROM tbl_contactdetails WHERE contact_Email = ?', [req.body.contact_Email])
+    const [rowFindUser] = await dbConn.execute('SELECT * FROM tbl_contactdetails WHERE contact_Email = ?', [req.body.contact_Email])
     console.log('.................................', rowFindUser);
     if (rowFindUser?.length > 0) {
       return res.json({
@@ -13,8 +13,7 @@ exports.ContactDetails = async (req, res, next) => {
 
     const [row] = await dbConn.execute(
       // "SELECT * FROM `users` WHERE `Email`=?",
-      // "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
-      'call sendquickmail_db.GetCompanyId(?)',
+      "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
 
       [req.body.company_Id]
     );
@@ -108,8 +107,7 @@ exports.ContactUnSubscribe = async (req, res, next) => {
   try {
 
     const [isCompanyFound] = await dbConn.execute(
-      // "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
-      'call sendquickmail_db.GetCompanyId(?)',
+      "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
       [req.body.company_Id]
     );
 
