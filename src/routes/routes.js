@@ -16,6 +16,7 @@ const {
 } = require("../login controllers/ContactDetails.js");
 const { GetContactDetails } = require("../login controllers/GetContactDetails");
 const { Get_TodayContactDetails } = require("../login controllers/GetContactDetails");
+const { GetContactEmails } = require("../login controllers/GetContactDetails");
 const { GetAllContactDetails } = require("../login controllers/GetAllContactDetails");
 const { GetAllContactEmails } = require("../login controllers/GetAllContactDetails");
 
@@ -109,7 +110,7 @@ router.put("/contact/edit", ContactDetailsEdit);
 router.post("/GetContactDetails/companyId=?", GetContactDetails);
 router.get("/GetAllContactDetails", GetAllContactDetails);
 router.get("/GetAllContactEmails", GetAllContactEmails);
-
+router.post("/GetContactEmails/companyId=?", GetContactEmails);
 router.post("/GetContactDetails/created_Date=?", Get_TodayContactDetails);
 router.put("/ContactUnSubscribe/ByEmail", ContactUnSubscribe);
 
