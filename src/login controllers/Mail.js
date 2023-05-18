@@ -9,8 +9,6 @@ const cryptr = new Cryptr('myTotallySecretKey')
 
 exports.Mail = async (req, res, next) => {
 
-
-
    const encryptedString = await cryptr.encrypt(req.body.pass); //info pass decrpt     
   const decry =await cryptr.decrypt(encryptedString);
     console.log("decryptedString", encryptedString);
@@ -36,8 +34,7 @@ exports.Mail = async (req, res, next) => {
     text: 'Hello I am Maneesh Yadav.working at the backend using nodejs  ', // plaintext body
     html: req.body.html,
   };
-
-
+//--------------------------------------------------------------------
   var p_date = req.body.Date;
   let time = req.body.Time;
 
@@ -48,7 +45,7 @@ exports.Mail = async (req, res, next) => {
   var date = new Date(p_date);
   var day = date.getDate();
   var month = date.getMonth() + 1;
-  //var year = date.getFullYear();
+  
   console.log("This is month.... " + month);
 
   let [hours, mins] = time.split(":");
@@ -62,7 +59,7 @@ exports.Mail = async (req, res, next) => {
 
     console.log('---------------------' + day);
     console.log('Running Cron Process');
-    // Delivering mail with sendMail method
+   
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) console.log(error);
       else console.log('Email sent: ' + info.response);
