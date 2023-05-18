@@ -105,23 +105,27 @@ exports.ContactDetailsEdit = async (req, res, next) => {
 exports.ContactUnSubscribe = async (req, res, next) => {
   console.log("contact_Email.......", req?.body?.contact_Email);
   try {
-
-    const [isCompanyFound] = await dbConn.execute(
-      "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
-      [req.body.company_Id]
-    );
-
-    if (isCompanyFound.length === 0) {
-      // return res.status(422).json({
+    if (!req?.body?.company_Id || !req?.body?.contact_Email) {
       return res.json({
-        message: "Invalid company_Id",
+        message: "Contact Email and company Id both required",
       });
     }
+    // const [isCompanyFound] = await dbConn.execute(
+    //   "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+    //   [req.body.company_Id]
+    // );
+
+    // if (isCompanyFound.length === 0) {
+    //   // return res.status(422).json({
+    //   return res.json({
+    //     message: "Invalid company_Id",
+    //   });
+    // }
     const [row] = await dbConn.execute(
       // "SELECT * FROM `tbl_contactdetails` WHERE `contact_Email`=?",
-      "SELECT * FROM `tbl_contactdetails`  WHERE `contact_Email`= ?",
+      "SELECT * FROM `tbl_contactdetails`  WHERE `company_Id`= ? and contact_Email= ?",
       // ['akas@jf.ci']
-      [req?.body?.contact_Email]
+      [req?.body?.company_Id, req?.body?.contact_Email]
     );
     if (row.length === 0) {
       // return res.status(422).json({
@@ -133,7 +137,12 @@ exports.ContactUnSubscribe = async (req, res, next) => {
     console.log('....................', req?.body?.isActive);
     let checkValue = '';
     if (typeof req?.body?.isActive === 'boolean') {
-      if (req?.body?.isActive == true) checkValue = '1';
+      if (req?.body?.isActive == true) {
+        // checkValue = '1';
+        return res.json({
+          message: "Unable to Process",
+        });
+      }
       else checkValue = '0';
       console.log("checkValue_...", checkValue);
     } else {
@@ -157,6 +166,7 @@ exports.ContactUnSubscribe = async (req, res, next) => {
       success: row,
       message: "contact_Email matched Successfully",
     });
+
   } catch (err) {
     next(err);
   }
