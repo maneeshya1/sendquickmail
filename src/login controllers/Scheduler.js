@@ -4,7 +4,8 @@ exports.getAllScheduler = async (req, res, next) => {
   try {
     console.log("getAllScheduler....");
     const [row_a] = await dbConn.execute(
-      "SELECT * FROM `tbl_new_scheduler`",
+      // "SELECT * FROM `tbl_new_scheduler`",
+      'call sendquickmail_db.Get_Allscheduler()',
       []
     );
     if (row_a.length > 0) {
@@ -28,7 +29,8 @@ exports.getScheduler = async (req, res, next) => {
   try {
     console.log("execute....");
     const [row_a] = await dbConn.execute(
-      "SELECT * FROM `tbl_new_scheduler` WHERE `scheduler_Id`= ?",
+      // "SELECT * FROM `tbl_new_scheduler` WHERE `scheduler_Id`= ?",
+      'call sendquickmail_db.Get_schedulerById(?)',
       [req.body.scheduler_Id]
     );
     console.log("tbl_new_scheduler..............", row_a);
@@ -76,7 +78,8 @@ exports.addScheduler = async (req, resp, next) => {
 
     ///// find company id
     const [row_1] = await dbConn.execute(
-      "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+      // "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+      'call sendquickmail_db.GetCompanyId(?)',
       [reqdata?.company_Id]
     );
     if (row_1.length === 0) {
@@ -87,7 +90,8 @@ exports.addScheduler = async (req, resp, next) => {
     }
     ///// find campaign id
     const [row_2] = await dbConn.execute(
-      "SELECT * FROM `tbl_campaign` WHERE `campaign_Id`=?",
+      // "SELECT * FROM `tbl_campaign` WHERE `campaign_Id`=?",
+      'call sendquickmail_db.GetbyCampaign_Id(?)',
       [reqdata?.campaign_Id]
     );
     if (row_2.length === 0) {
@@ -98,7 +102,8 @@ exports.addScheduler = async (req, resp, next) => {
     }
     ///// find sender id
     const [row_3] = await dbConn.execute(
-      "SELECT * FROM `tblsender_emails_details` WHERE `sender_Id`=?",
+      // "SELECT * FROM `tblsender_emails_details` WHERE `sender_Id`=?",
+      'call sendquickmail_db.GetbySender_Id(?)',
       [reqdata?.senderId]
     );
     if (row_3.length === 0) {
@@ -109,7 +114,8 @@ exports.addScheduler = async (req, resp, next) => {
     }
 
     const [rows_add] = await dbConn.execute(
-      "Insert into tbl_new_scheduler (company_Id, UserId, senderId, subject, campaign_Id, schedulerTime, status) values(?,?,?,?,?,?,?)",
+      // "Insert into tbl_new_scheduler (company_Id, UserId, senderId, subject, campaign_Id, schedulerTime, status) values(?,?,?,?,?,?,?)",
+      'call sendquickmail_db.Create_scheduler(?,?,?,?,?,?,?)',
       [
         reqdata?.company_Id,
         reqdata?.UserId,
@@ -124,7 +130,7 @@ exports.addScheduler = async (req, resp, next) => {
     if (rows_add.affectedRows === 1) {
       return resp.status(201).json({
         success: rows_add,
-        message: "The user has been successfully inserted.",
+        message: "The schedule successfully created.",
       });
     }
   } catch (error) {
@@ -161,7 +167,8 @@ exports.updateScheduler = async (req, resp, next) => {
     }
     ///// find company id
     const [row_1] = await dbConn.execute(
-      "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+      // "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+      'call sendquickmail_db.GetCompanyId(?)',
       [reqdata?.company_Id]
     );
     if (row_1.length === 0) {
@@ -172,7 +179,8 @@ exports.updateScheduler = async (req, resp, next) => {
     }
     ///// find campaign id
     const [row_2] = await dbConn.execute(
-      "SELECT * FROM `tbl_campaign` WHERE `campaign_Id`=?",
+      // "SELECT * FROM `tbl_campaign` WHERE `campaign_Id`=?",
+      'call sendquickmail_db.GetbyCampaign_Id(?)',
       [reqdata?.campaign_Id]
     );
     if (row_2.length === 0) {
@@ -183,7 +191,8 @@ exports.updateScheduler = async (req, resp, next) => {
     }
     ///// find sender id
     const [row_3] = await dbConn.execute(
-      "SELECT * FROM `tblsender_emails_details` WHERE `sender_Id`=?",
+      // "SELECT * FROM `tblsender_emails_details` WHERE `sender_Id`=?",
+      'call sendquickmail_db.GetbySender_Id(?)',
       [reqdata?.senderId]
     );
     if (row_3.length === 0) {
@@ -193,7 +202,8 @@ exports.updateScheduler = async (req, resp, next) => {
       });
     }
     const [row_a] = await dbConn.execute(
-      "SELECT * FROM `tbl_new_scheduler` WHERE `scheduler_Id`= ?",
+      // "SELECT * FROM `tbl_new_scheduler` WHERE `scheduler_Id`= ?",
+      'call sendquickmail_db.Get_schedulerById(?)',
       [reqdata?.scheduler_Id]
     );
     console.log("row_a.....", row_a);
@@ -209,7 +219,8 @@ exports.updateScheduler = async (req, resp, next) => {
     
     // //  const rows_update = []; // use for testing
     [rows_update] = await dbConn.execute(
-      "UPDATE `tbl_new_scheduler` SET `company_Id`=?, `UserId`=?, `senderId`=?, `subject`=?, `campaign_Id`=?, `schedulerTime`=?, `status`=?, `createdBy`=?  WHERE `scheduler_Id` = ?",
+      // "UPDATE `tbl_new_scheduler` SET `company_Id`=?, `UserId`=?, `senderId`=?, `subject`=?, `campaign_Id`=?, `schedulerTime`=?, `status`=?, `createdBy`=?  WHERE `scheduler_Id` = ?",
+      'call sendquickmail_db.Update_scheduler(?,?,?,?,?,?,?,?,?)',
       // query,
       [
         reqdata?.company_Id || getSchedule?.company_Id,

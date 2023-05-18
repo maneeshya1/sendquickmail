@@ -3,7 +3,8 @@ const dbConn = require("../../config/db.config").promise();
 exports.getTimeZone = async (req, resp, next) => {
   try {
     const [row_a] = await dbConn.execute(
-      "SELECT * FROM `tbl_timezone_allcountries`",
+      // "SELECT * FROM `tbl_timezone_allcountries`",
+      'call sendquickmail_db.GetAll_Timezone()',
       []
     );
     // console.log("row_a........", row_a);
@@ -11,7 +12,7 @@ exports.getTimeZone = async (req, resp, next) => {
       return resp.json({
         success: "true",
         message: "List of all timeZone",
-        data: row_a,
+        data: row_a[0],
       });
     } else {
       return resp.json({

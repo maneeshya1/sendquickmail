@@ -18,7 +18,7 @@ exports.Campaign = async (req, res, next) => {
       });
     }
     const [row1] = await dbConn.execute(
-      "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+      'call sendquickmail_db.GetCompanyId(?)',
       [req.body.company_Id],
 
     );
@@ -32,8 +32,9 @@ exports.Campaign = async (req, res, next) => {
 
     const [rows] = await dbConn.execute(
 
-      'insert into tbl_campaign (`campaign_Name`,`template_Id`,`campaign_TypeId`,`company_Id`,`UserId`) values(?,?,?,?,?)',
+      // 'insert into tbl_campaign (`campaign_Name`,`template_Id`,`campaign_TypeId`,`company_Id`,`UserId`) values(?,?,?,?,?)',
 
+      'call sendquickmail_db.Create_campaign(?,?,?, ?,?)',
       [
         req.body.campaign_Name,
         req.body.template_Id,
@@ -78,7 +79,9 @@ exports.CampaignDetailsEdit = async (req, res, next) => {
       });
     }
     const [row1] = await dbConn.execute(
-      "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+      // "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+      
+      'call sendquickmail_db.GetCompanyId(?)',
       [req.body.company_Id],
 
     );
@@ -89,7 +92,9 @@ exports.CampaignDetailsEdit = async (req, res, next) => {
       });
     }
 
-    const [rows1] = await dbConn.execute("UPDATE tbl_campaign SET `campaign_Name` =?,`template_Id`=?,`campaign_TypeId`=? WHERE `campaign_Id` = ?",
+    const [rows1] = await dbConn.execute(
+      // "UPDATE tbl_campaign SET `campaign_Name` =?,`template_Id`=?,`campaign_TypeId`=? WHERE `campaign_Id` = ?",
+      'call sendquickmail_db.Update_campaign(?,?,?,?)',
       [
         req.body.campaign_Name,
         req.body.template_Id,
