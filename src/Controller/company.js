@@ -32,7 +32,7 @@ exports.create = function (req, res) {
             Employee.create(new_employee, function (err, response) {
                 if (err)
                     res.send(err);
-                res.json({ error: false, message: response });
+                res.json({ error: false, message: 'Added Succesfully' });
             });
         }
 };

@@ -2,6 +2,15 @@ const dbConn = require('../../config/db.config').promise();
 exports.Segment = async (req, res, next) => {
 
   try {
+
+    const [rowFindUser] = await dbConn.execute('SELECT * FROM tbl_segment WHERE segmentName = ?', [req.body.segmentName])
+    console.log('.................................', rowFindUser);
+    if (rowFindUser?.length > 0) {
+      return res.json({
+        message: "Segment Name is already exists",
+        success: false,
+      });
+    }
     
     const [row] = await dbConn.execute(
       // "SELECT * FROM `users` WHERE `Email`=?",

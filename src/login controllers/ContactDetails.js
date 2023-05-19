@@ -131,6 +131,7 @@ exports.ContactUnSubscribe = async (req, res, next) => {
       // return res.status(422).json({
       return res.json({
         message: "Invalid contact_Email",
+        success: false,
       });
     }
 
@@ -141,6 +142,7 @@ exports.ContactUnSubscribe = async (req, res, next) => {
         // checkValue = '1';
         return res.json({
           message: "Unable to Process",
+          success: true,
         });
       }
       else checkValue = '0';
