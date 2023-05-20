@@ -3,11 +3,12 @@ exports.Segment = async (req, res, next) => {
 
   try {
 
-    const [rowFindUser] = await dbConn.execute('SELECT * FROM tbl_segment WHERE segmentName = ?', [req.body.segmentName])
+    const [rowFindUser] = await dbConn.execute('SELECT * FROM tbl_segment WHERE segmentName = ? and company_Id = ?',
+     [req.body.segmentName,req.body.company_Id])
     console.log('.................................', rowFindUser);
     if (rowFindUser?.length > 0) {
       return res.json({
-        message: "Segment Name is already exists",
+        message: "Segment Name and company_Id is already exists",
         success: false,
       });
     }
@@ -162,8 +163,8 @@ exports.GetSegmentbyId = async (req, res, next) => {
   try {
     console.log("execute....");
     const [row_a] = await dbConn.execute(
-      // "SELECT * FROM `tbl_segment` WHERE `segment_Id`= ?",
-      'call sendquickmail_db.Get_SegmentbyId(?)',
+      "SELECT * FROM `tbl_segment` WHERE `segment_Id`= ?",
+      // 'call sendquickmail_db.Get_SegmentbyId(?)',
       [req.body.segment_Id]
     );
     console.log("tbl_segmentdetails..............", row_a);
