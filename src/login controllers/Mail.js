@@ -9,9 +9,9 @@ const cryptr = new Cryptr('myTotallySecretKey')
 
 exports.Mail = async (req, res, next) => {
 
-   const encryptedString = await cryptr.encrypt(req.body.pass); //info pass decrpt     
-  const decry =await cryptr.decrypt(encryptedString);
-    console.log("decryptedString", encryptedString);
+  const encryptedString = await cryptr.encrypt(req.body.pass); //info pass decrpt     
+  const decry = await cryptr.decrypt(encryptedString);
+  console.log("decryptedString", encryptedString);
   var transporter = nodemailer.createTransport({
     host: "smtp-mail.outlook.com", // hostname
     secureConnection: false, // TLS requires secureConnection to be false
@@ -20,8 +20,8 @@ exports.Mail = async (req, res, next) => {
       ciphers: 'SSLv3'
     },
     auth: {
-      user:req.body.user,
-      pass:decry
+      user: req.body.user,
+      pass: decry
     }
   });
 
@@ -34,7 +34,7 @@ exports.Mail = async (req, res, next) => {
     text: 'Hello I am Maneesh Yadav.working at the backend using nodejs  ', // plaintext body
     html: req.body.html,
   };
-//--------------------------------------------------------------------
+  //--------------------------------------------------------------------
   var p_date = req.body.Date;
   let time = req.body.Time;
 
@@ -45,7 +45,7 @@ exports.Mail = async (req, res, next) => {
   var date = new Date(p_date);
   var day = date.getDate();
   var month = date.getMonth() + 1;
-  
+
   console.log("This is month.... " + month);
 
   let [hours, mins] = time.split(":");
@@ -59,10 +59,16 @@ exports.Mail = async (req, res, next) => {
 
     console.log('---------------------' + day);
     console.log('Running Cron Process');
-   
+
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) console.log(error);
-      else console.log('Email sent: ' + info.response);
+      else {
+        console.log('Email sent: ' + info.response);
+        return res.status(201).json({
+          success: true,
+          message: "Email is Succesfully sent",
+        });
+      }
     });
   });
 }
