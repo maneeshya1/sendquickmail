@@ -33,6 +33,8 @@ const { GetTemplate } = require("../login controllers/GetTemplate");
 const { Mail } = require('../login controllers/Mail');
 const{Fileupload}=require('../login controllers/Fileupload.js');
 const{List}=require('../login controllers/List.js')
+const{NewCampaign}=require('../Controller/NewCampaign.js');
+const{UpdateCampaign}=require('../Controller/NewCampaign.js');
 
 const {
   getScheduler,
@@ -146,7 +148,8 @@ router.post("/addSchedule", addScheduler);
 router.get("/getAllScheduler", getAllScheduler);
 // router.get('/getScheduler/:scheduler_Id',getScheduler);
 
-
+router.post("/NewCampaign", NewCampaign);
+router.put("/UpdateCampaign", UpdateCampaign);
 router.post("/allCompaniesByUserId/UserId:UserId", getUserCompanyDataByUserId);
 
 //////////////
