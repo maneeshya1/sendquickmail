@@ -153,7 +153,7 @@ router.get("/getAllCampaign", getAllCampaign);
 router.post("/NewCampaign", NewCampaign);
 router.put("/UpdateCampaign", UpdateCampaign);
 router.post("/allCompaniesByUserId/UserId:UserId", getUserCompanyDataByUserId);
-router.get("/GetEmailDetails/UserId=?", GetEmailDetails);
+router.post("/GetEmailDetails/UserId=?", GetEmailDetails);
 //////////////
 router.post("/addList_of_TimeZone", addList_of_TimeZone);
 router.get("/getAll_TimeZone", getTimeZone);
