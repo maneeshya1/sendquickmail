@@ -35,6 +35,8 @@ const{Fileupload}=require('../login controllers/Fileupload.js');
 const{List}=require('../login controllers/List.js')
 const{NewCampaign}=require('../Controller/NewCampaign.js');
 const{UpdateCampaign}=require('../Controller/NewCampaign.js');
+const{getAllCampaign}=require('../Controller/NewCampaign.js');
+const{GetEmailDetails}=require('../Controller/GetEmailDetails.js');
 
 const {
   getScheduler,
@@ -147,11 +149,11 @@ router.put("/updateScheduler/Id=?", updateScheduler);
 router.post("/addSchedule", addScheduler);
 router.get("/getAllScheduler", getAllScheduler);
 // router.get('/getScheduler/:scheduler_Id',getScheduler);
-
+router.get("/getAllCampaign", getAllCampaign);
 router.post("/NewCampaign", NewCampaign);
 router.put("/UpdateCampaign", UpdateCampaign);
 router.post("/allCompaniesByUserId/UserId:UserId", getUserCompanyDataByUserId);
-
+router.get("/GetEmailDetails/UserId=?", GetEmailDetails);
 //////////////
 router.post("/addList_of_TimeZone", addList_of_TimeZone);
 router.get("/getAll_TimeZone", getTimeZone);

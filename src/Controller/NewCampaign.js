@@ -47,7 +47,7 @@ exports.NewCampaign = async (req, res, next) => {
         const [rows] = await dbConn.execute(
 
             // 'insert into tbl_createcampaign (`ToName`,`sentTo`,`ToCC`,`ToBCC`,`Subject`,`template_Id`,`senderEmail`,`senderPassword`,`Date`,`Time`,`Timezone`,`company_Id`,`UserId`) values(?,?,?,?,?,?,?,?,?,?,?,?,?)',
-            'call sendquickmail_db.Newcreatecampaign(?,?,?,?,?,?,?,?,?,?,?,?,?)',
+            'call sendquickmail_db.Newcreatecampaign(?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
 
             [
                 req.body.ToName,
@@ -58,6 +58,7 @@ exports.NewCampaign = async (req, res, next) => {
                 req.body.template_Id,
                 req.body.senderEmail,
                 req.body.senderPassword,
+                req.body.body,
                 req.body.Date,
                 req.body.Time,
                 req.body.Timezone,
@@ -172,3 +173,28 @@ exports.UpdateCampaign = async (req, res, next) => {
         next(err);
     }
 };
+
+
+exports.getAllCampaign = async (req, res, next) => {
+    try {
+      console.log("getAllCampaign....");
+      const [row_a] = await dbConn.execute(
+        "SELECT * FROM `tbl_createcampaign`",
+        []
+      );
+      if (row_a.length > 0) {
+        return res.json({
+          success: "true",
+          message: "List of All Campaign",
+          data: row_a,
+        });
+      } else {
+        return res.json({
+          message: "No data found",
+        });
+      }
+    } catch (err) {
+      console.log("err...", err);
+      next(err);
+    }
+  };
