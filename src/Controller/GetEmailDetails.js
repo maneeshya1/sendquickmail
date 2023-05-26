@@ -13,7 +13,7 @@ exports.GetEmailDetails = async (req, res, next) => {
         return res.json({
           success: "true",
           message: "UserId matched Successfully",
-          data: row_a[0],
+          data: row_a,
         });
       } else {
         return res.json({
