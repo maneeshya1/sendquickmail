@@ -37,6 +37,10 @@ const{NewCampaign}=require('../Controller/NewCampaign.js');
 const{UpdateCampaign}=require('../Controller/NewCampaign.js');
 const{getAllCampaign}=require('../Controller/NewCampaign.js');
 const{GetEmailDetails}=require('../Controller/GetEmailDetails.js');
+const{GetStateDetails}=require('../Controller/GetEmailDetails.js');
+const{getAllCountry}=require('../Controller/GetEmailDetails.js');
+const{GetCityDetails}=require('../Controller/GetEmailDetails.js');
+
 
 const {
   getScheduler,
@@ -154,6 +158,9 @@ router.post("/NewCampaign", NewCampaign);
 router.put("/UpdateCampaign", UpdateCampaign);
 router.post("/allCompaniesByUserId/UserId:UserId", getUserCompanyDataByUserId);
 router.post("/GetEmailDetails/UserId=?", GetEmailDetails);
+router.post("/GetStateDetails/country_id=?", GetStateDetails);
+router.post("/GetCityDetails/state_id=?", GetCityDetails);
+router.get("/getAllCountry", getAllCountry);
 //////////////
 router.post("/addList_of_TimeZone", addList_of_TimeZone);
 router.get("/getAll_TimeZone", getTimeZone);
