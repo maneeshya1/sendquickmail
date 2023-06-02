@@ -36,6 +36,7 @@ const{List}=require('../login controllers/List.js')
 const{NewCampaign}=require('../Controller/NewCampaign.js');
 const{UpdateCampaign}=require('../Controller/NewCampaign.js');
 const{getAllCampaign}=require('../Controller/NewCampaign.js');
+const{GetCampaignByUserId}=require('../Controller/NewCampaign.js');
 const{GetEmailDetails}=require('../Controller/GetEmailDetails.js');
 const{GetStateDetails}=require('../Controller/GetEmailDetails.js');
 const{getAllCountry}=require('../Controller/GetEmailDetails.js');
@@ -155,6 +156,7 @@ router.get("/getAllScheduler", getAllScheduler);
 // router.get('/getScheduler/:scheduler_Id',getScheduler);
 router.get("/getAllCampaign", getAllCampaign);
 router.post("/NewCampaign", NewCampaign);
+router.post("/GetCampaignBy/UserId=?", GetCampaignByUserId);
 router.put("/UpdateCampaign", UpdateCampaign);
 router.post("/allCompaniesByUserId/UserId:UserId", getUserCompanyDataByUserId);
 router.post("/GetEmailDetails/UserId=?", GetEmailDetails);

@@ -198,3 +198,30 @@ exports.getAllCampaign = async (req, res, next) => {
       next(err);
     }
   };
+
+  exports.GetCampaignByUserId = async (req, res, next) => {
+    try {
+      console.log("execute....");
+      const [row_a] = await dbConn.execute(
+        "SELECT * FROM `tbl_createcampaign` WHERE `UserId`= ?",
+        // 'call sendquickmail_db.Get_contactemail(?)',
+        [req.body.UserId]
+      );
+      console.log("UserId..............", row_a);
+      if (row_a.length > 0) {
+        return res.json({
+          success: "true",
+          message: "UserId matched Successfully",
+          data: row_a,
+        });
+      } else {
+        return res.json({
+          status: 404,
+          message: "Invalid UserId ",
+        });
+      }
+    } catch (err) {
+      console.log("err...", err);
+      next(err);
+    }
+  };
