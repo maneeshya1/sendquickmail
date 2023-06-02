@@ -24,6 +24,7 @@ const { UserRoles } = require("../login controllers/UserRoleMaster.js");
 // const{Campaign}=require('../login controllers/UserRoleMaster.js')
 const { Campaign } = require("../login controllers/Campaign.js");
 const { CampaignDetailsEdit } = require("../login controllers/Campaign.js");
+const { GetCampaignUserId } = require("../login controllers/Campaign.js");
 const { Segment } = require("../login controllers/Segment.js");
 const { UpdateSegment } = require("../login controllers/Segment");
 const { GetSegmentbyId } = require("../login controllers/Segment.js");
@@ -129,6 +130,7 @@ router.post('/List',List);
 
 router.post("/Campaign", Campaign);
 router.put("/Campaign/edit", CampaignDetailsEdit);
+router.post("/GetCampaign/UserId=?", GetCampaignUserId);
 
 router.post("/Segment", Segment);
 router.put("/UpdateSegment", UpdateSegment);
