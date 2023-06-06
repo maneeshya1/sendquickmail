@@ -31,6 +31,9 @@ const { GetSegmentbyId } = require("../login controllers/Segment.js");
 const { GetSegmentbyUserId } = require("../login controllers/Segment.js");
 const { getSegment } = require("../login controllers/getSegment");
 const { GetTemplate } = require("../login controllers/GetTemplate");
+const { Template } = require("../login controllers/Template.js");
+const { UpdateTemplate } = require("../login controllers/Template.js");
+const { getAllfieldName } = require("../login controllers/Template.js");
 const { Mail } = require('../login controllers/Mail');
 const{Fileupload}=require('../login controllers/Fileupload.js');
 const{List}=require('../login controllers/List.js')
@@ -141,9 +144,11 @@ router.post("/getSegment/UserId=?", GetSegmentbyUserId);
 
 // template.................................................
 router.get("/getTemplate", GetTemplate);
-
+router.post("/Template", Template);
+router.put("/UpdateTemplate", UpdateTemplate);
 router.get("/getall", getAllUser);
 router.post('/mail',Mail);
+router.get("/getAllfieldName", getAllfieldName);
 // router.get('/GetContact/:contact_Email', GetContact);
 
 // router.post('/Campaign',Campaign);
