@@ -28,8 +28,23 @@ exports.Template = async (req, res, next) => {
             });
         }
 
+        const [row2] = await dbConn.execute(
+            "SELECT * FROM `tbl_templatetype` WHERE `templateTypeId`=?",
+            // 'call sendquickmail_db.GetCompanyId(?)',
+            [req.body.templateTypeId],
+
+        );
+
+        if (row2.length === 0) {
+            // return res.status(422).json({
+            return res.json({
+                message: "Invalid templateTypeId ",
+                success: false,
+            });
+        }
+
         const [rows] = await dbConn.execute(
-            'insert into tbl_template (`template_Name`,`body`,`company_Id`,`UserId`) values(?,?,?,?)',
+            'insert into tbl_template (`template_Name`,`body`,`company_Id`,`UserId`,`templateTypeId`) values(?,?,?,?,?)',
 
             // 'call sendquickmail_db.CreateSegment(?,?,?,?,?,?,?,?,?,?,?)',
             [
@@ -37,6 +52,7 @@ exports.Template = async (req, res, next) => {
                 req.body.body,
                 req.body.company_Id,
                 req.body.UserId,
+                req.body.templateTypeId,
 
             ]);
 
@@ -49,7 +65,7 @@ exports.Template = async (req, res, next) => {
         }
 
         return res.json({
-            success: row, row1,
+            success: row, row1,row2,
             message: "UserId and CompanyId matched Successfully",
         });
 
