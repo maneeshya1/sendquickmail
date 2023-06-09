@@ -44,9 +44,9 @@ exports.Template = async (req, res, next) => {
         }
 
         const [rows] = await dbConn.execute(
-            'insert into tbl_template (`template_Name`,`body`,`company_Id`,`UserId`,`templateTypeId`) values(?,?,?,?,?)',
+            // 'insert into tbl_template (`template_Name`,`body`,`company_Id`,`UserId`,`templateTypeId`) values(?,?,?,?,?)',
 
-            // 'call sendquickmail_db.CreateSegment(?,?,?,?,?,?,?,?,?,?,?)',
+            'call sendquickmail_db.Create_template(?,?,?,?,?)',
             [
                 req.body.template_Name,
                 req.body.body,
@@ -107,8 +107,8 @@ exports.UpdateTemplate = async (req, res, next) => {
 
         const [rows] = await dbConn.execute(
 
-            "UPDATE tbl_template SET `template_Name` = ?, `body` = ?,`company_Id` = ?,`UserId` = ? WHERE `template_Id` = ?",
-            // 'call sendquickmail_db.Update_Segment(?,?,?,?,?,?,?,?,?,?,?,?)',
+            // "UPDATE tbl_template SET `template_Name` = ?, `body` = ?,`company_Id` = ?,`UserId` = ? WHERE `template_Id` = ?",
+            'call sendquickmail_db.Update_template(?,?,?,?,?)',
 
             [
                 req.body.template_Name,
@@ -136,8 +136,8 @@ exports.getAllfieldName = async (req, res, next) => {
     try {
       console.log("fieldName....");
       const [row_a] = await dbConn.execute(
-        "SELECT `fieldName` FROM `tbl_template_field`",
-        // 'call sendquickmail_db.Get_Allscheduler()',
+        // "SELECT `fieldName` FROM `tbl_template_field`",
+        'call sendquickmail_db.Get_tbl_template_field()',
         []
       );
       if (row_a.length > 0) {
