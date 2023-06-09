@@ -23,6 +23,15 @@ exports.register = async (req, res, next) => {
         success: false,
       });
     }
+
+    const [rowUser] = await conn.execute('SELECT * FROM invite_users WHERE Username = ?', [req.body.Username])
+    console.log('.................................', rowUser);
+    if (rowUser?.length > 0) {
+      return res.json({
+        message: "Username is already exists",
+        success: false,
+      });
+    }
     //-------------------------------------------------------------------------------------------------------
 
     const hashPass = await bcrypt.hash(req.body.Password, 12);
