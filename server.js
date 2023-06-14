@@ -28,11 +28,11 @@ app.use(bodyParser.json())
 // app.use(cors({
 //   origin: ['http://test.sendquickemail.com/']
 //   }));
-  const cors = require('cors');
+const cors = require('cors');
 app.use(cors({
-origin: 'http://test.sendquickemail.com'
+  origin: 'http://test.sendquickemail.com'
 }));
-  //------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------
 // define a root route
 app.get('/', (req, res) => {
   res.send("Hello World");
@@ -61,8 +61,10 @@ const routes3 = require('./src/routes/company');
 const routes4 = require('./src/routes/list');
 // -----------------------
 const DeleteSegmentRoutes = require('./src/routes/DeleteSegment.route');
+const DeleteTemplateRoutes = require('./src/routes/DeleteTemplate.route');
 
 app.use('/DeleteSegment', DeleteSegmentRoutes);
+app.use('/DeleteTemplate', DeleteTemplateRoutes);
 // -----------------------------
 
 
@@ -71,6 +73,9 @@ app.use(routes1);
 app.use(routes2);
 app.use(routes3);
 app.use(routes4);
+
+//------------------------------------------------------------------------------------------
+
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
