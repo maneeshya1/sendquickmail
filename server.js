@@ -6,6 +6,7 @@ const path = require("path");
 const hbs = require("hbs");
 const cookieParser = require("cookie-parser");
 const dbConn = require("./config/db.config");
+const nodemailer = require('nodemailer');
 
 require("dotenv").config();
 
@@ -74,8 +75,75 @@ app.use(routes2);
 app.use(routes3);
 app.use(routes4);
 
-//------------------------------------------------------------------------------------------
+//---------------------forgot-password---------------------------------------------------------------------
 
+
+app.post('/forgot-password', (req, res) => {
+  const { email } = req.body;
+
+  // Generate OTP
+  const otp = Math.floor(100000 + Math.random() * 900000);
+
+  // Save OTP in the database
+  dbConn.query('UPDATE invite_users SET otp = ? WHERE email = ?', [otp, email], (error, results) => {
+    if (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Something went wrong' });
+    }
+
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Send OTP to user's email
+    const transporter = nodemailer.createTransport({
+      // service: 'your_email_service_provider',
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      requireTLS: true,
+      auth: {
+        user: "maneeshy440@gmail.com",
+        pass: "wjnkxqtdsjipamxc",
+      },
+    });
+
+    const mailOptions = {
+      from: "maneeshy440@gmail.com",
+      to: email,
+      subject: 'Password Reset OTP',
+      text: `Your OTP is: ${otp}`,
+    };
+
+    transporter.sendMail(mailOptions, (error) => {
+      if (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Failed to send OTP' });
+      }
+
+      res.status(200).json({ message: 'OTP sent successfully' });
+    });
+  });
+});
+
+// ---------------------------------------------------------------------------------------------
+app.put('/api/users/otp', (req, res) => {
+  const { otp } = req.body;
+  const { Password } = req.body;
+
+  // Execute the update query
+  const query = 'UPDATE invite_users SET Password = ? WHERE otp = ?';
+  dbConn.query(query, [Password, otp], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Failed to update Password' });
+    } else {
+      res.json({ message: 'Password updated successfully' });
+    }
+  });
+});
+
+// -------------------------------------------------------------------------------------
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
