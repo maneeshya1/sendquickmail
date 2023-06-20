@@ -156,7 +156,7 @@ router.get("/getAllfieldName", getAllfieldName);
 // router.get('/getoneuser',getUserName);
 
 // router.get('/getuser',getUser)
-router.get("/getScheduler/Id=?", getScheduler);
+router.post("/getScheduler/Id=?", getScheduler);
 router.put("/updateScheduler/Id=?", updateScheduler);
 router.post("/addSchedule", addScheduler);
 router.get("/getAllScheduler", getAllScheduler);
