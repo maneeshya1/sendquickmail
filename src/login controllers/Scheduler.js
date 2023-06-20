@@ -31,19 +31,19 @@ exports.getScheduler = async (req, res, next) => {
     const [row_a] = await dbConn.execute(
       // "SELECT * FROM `tbl_new_scheduler` WHERE `scheduler_Id`= ?",
       'call sendquickmail_db.Get_schedulerById(?)',
-      [req.body.scheduler_Id]
+      [req.body.UserId]
     );
     console.log("tbl_new_scheduler..............", row_a);
     if (row_a.length > 0) {
       return res.json({
         success: "true",
-        message: "UserId and scheduler matched Successfully",
+        message: "UserId  matched Successfully",
         data: row_a[0],
       });
     } else {
       return res.json({
         status: 404,
-        message: "Invalid scheduler Id ",
+        message: "Invalid UserId ",
       });
     }
   } catch (err) {
