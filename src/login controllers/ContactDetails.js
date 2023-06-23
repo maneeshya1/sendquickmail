@@ -2,14 +2,14 @@ const dbConn = require("../../config/db.config").promise();
 exports.ContactDetails = async (req, res, next) => {
   try {
 
-    const [rowFindUser] = await dbConn.execute('SELECT * FROM tbl_contactdetails WHERE contact_Email = ?', [req.body.contact_Email])
-    console.log('.................................', rowFindUser);
-    if (rowFindUser?.length > 0) {
-      return res.json({
-        message: "Email is already exists",
-        success: false,
-      });
-    }
+    // const [rowFindUser] = await dbConn.execute('SELECT * FROM tbl_contactdetails WHERE contact_Email = ?', [req.body.contact_Email])
+    // console.log('.................................', rowFindUser);
+    // if (rowFindUser?.length > 0) {
+    //   return res.json({
+    //     message: "Email is already exists",
+    //     success: false,
+    //   });
+    // }
 
     const [row] = await dbConn.execute(
       // "SELECT * FROM `users` WHERE `Email`=?",
