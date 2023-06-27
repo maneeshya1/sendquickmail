@@ -62,13 +62,13 @@ exports.GetContactDetails = async (req, res, next) => {
           const [row_a] = await dbConn.execute(
             // "SELECT * FROM `tbl_contactdetails` WHERE `company_Id`= ?",
             'call sendquickmail_db.Get_contactemail(?)',
-            [req.body.company_Id]
+            [req.body.contact_Email]
           );
           console.log("tbl_contactdetails..............", row_a);
           if (row_a.length > 0) {
             return res.json({
               success: "true",
-              message: "company Id matched Successfully",
+              message: "contact_Email matched Successfully",
               data: row_a[0],
             });
           } else {

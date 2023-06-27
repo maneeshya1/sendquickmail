@@ -123,7 +123,7 @@ router.put("/contact/edit", ContactDetailsEdit);
 router.post("/GetContactDetails/companyId=?", GetContactDetails);
 router.get("/GetAllContactDetails", GetAllContactDetails);
 router.get("/GetAllContactEmails", GetAllContactEmails);
-router.post("/GetContactEmails/companyId=?", GetContactEmails);
+router.post("/GetContactEmails/contact_Email=?", GetContactEmails);
 router.post("/GetContactDetails/created_Date=?", Get_TodayContactDetails);
 router.put("/ContactUnSubscribe/ByEmail", ContactUnSubscribe);
 
