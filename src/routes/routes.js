@@ -45,6 +45,7 @@ const{GetEmailDetails}=require('../Controller/GetEmailDetails.js');
 const{GetStateDetails}=require('../Controller/GetEmailDetails.js');
 const{getAllCountry}=require('../Controller/GetEmailDetails.js');
 const{GetCityDetails}=require('../Controller/GetEmailDetails.js');
+const{forget}=require('../Controller/forget.js');
 
 
 const {
@@ -177,5 +178,6 @@ router.post("/addTimeZone", addTimeZone);
 router.put("/updateTimeZone", updateTimeZone);
 router.put("/updateUserByUserId", updateUserByUserId);
 router.put("/ChangePassword/ByUserId", ChangePassword);
+router.put("/forgetbyotp", forget);
 
 module.exports = router;
