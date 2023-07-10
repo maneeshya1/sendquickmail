@@ -128,7 +128,7 @@ exports.GetCampaignUserId = async (req, res, next) => {
     console.log("execute....");
     const [row_a] = await dbConn.execute(
       // "SELECT * FROM `tbl_campaign` WHERE `UserId`= ?",
-      'call sendquickmail_db.CampaignGetUserId(?)'
+      'call sendquickmail_db.GetCampaignUserId(?)',
       [req.body.UserId]
     );
     console.log("UserId..............", row_a);
