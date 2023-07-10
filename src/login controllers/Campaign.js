@@ -34,7 +34,7 @@ exports.Campaign = async (req, res, next) => {
 
       // 'insert into tbl_campaign (`campaign_Name`,`template_Id`,`campaign_TypeId`,`company_Id`,`UserId`) values(?,?,?,?,?)',
 
-      'call sendquickmail_db.Create_campaign(?,?,?, ?,?)',
+      'call sendquickmail_db.Create_campaign(?,?,?,?,?)',
       [
         req.body.campaign_Name,
         req.body.template_Id,
@@ -127,13 +127,13 @@ exports.GetCampaignUserId = async (req, res, next) => {
   try {
     console.log("execute....");
     const [row_a] = await dbConn.execute(
-      "SELECT * FROM `tbl_campaign` WHERE `UserId`= ?",
-      // 'call sendquickmail_db.Get_contactemail(?)',
+      // "SELECT * FROM `tbl_campaign` WHERE `UserId`= ?",
+      'call sendquickmail_db.CampaignGetUserId(?)'
       [req.body.UserId]
     );
     console.log("UserId..............", row_a);
     if (row_a.length > 0) {
-      return res.json({
+      return res.json({ 
         success: "true",
         message: "UserId matched Successfully",
         data: row_a,
@@ -149,4 +149,31 @@ exports.GetCampaignUserId = async (req, res, next) => {
     next(err);
   }
 };
+
+
+exports.GetCampaignDataByCampaignId = async (req, res, next) => {
+  try {
+    console.log("execute....");
+    const [row_a] = await dbConn.execute(
+      'call sendquickmail_db.GetCampaignDataByCampaignId(?)',
+      [req.body.campaign_Id]
+    );
+    console.log("campaign_Id..............", row_a);
+    if (row_a.length > 0) {
+      return res.json({ 
+        success: true,
+        data: row_a,
+      });
+    } else {
+      return res.status(404).json({
+        success: false,
+        error: "Invalid campaign_Id",
+      });
+    }
+  } catch (err) {
+    console.log("err...", err);
+    next(err);
+  }
+};
+
 

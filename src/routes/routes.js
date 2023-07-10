@@ -41,6 +41,7 @@ const{NewCampaign}=require('../Controller/NewCampaign.js');
 const{UpdateCampaign}=require('../Controller/NewCampaign.js');
 const{getAllCampaign}=require('../Controller/NewCampaign.js');
 const{GetCampaignByUserId}=require('../Controller/NewCampaign.js');
+const{GetCampaignDataByCampaignId}=require('../login controllers/Campaign.js');
 const{GetEmailDetails}=require('../Controller/GetEmailDetails.js');
 const{GetStateDetails}=require('../Controller/GetEmailDetails.js');
 const{getAllCountry}=require('../Controller/GetEmailDetails.js');
@@ -135,6 +136,7 @@ router.post('/List',List);
 router.post("/Campaign", Campaign);
 router.put("/Campaign/edit", CampaignDetailsEdit);
 router.post("/GetCampaign/UserId=?", GetCampaignUserId);
+router.post("/GetCampaign/campaign_Id=?", GetCampaignDataByCampaignId);
 
 router.post("/Segment", Segment);
 router.put("/UpdateSegment", UpdateSegment);
