@@ -27,10 +27,8 @@ exports.ContactDetails = async (req, res, next) => {
     //
     const [rows] = await dbConn.execute(
       // "insert into tbl_contactdetails (`firstName`,`lastName`,`contact_Email`,`user_Details`,`file_UploadId`,`IsActive`,`list_Id`,`company_Id`,`contact_Number`) values(?,?,?,?,?,?,?,?,?)",
-      'call sendquickmail_db.Contactdetails(?,?,?,?,?,?,?,?,?)',
+      'call sendquickmail_db.Contactdetails(?,?,?,?,?,?,?)',
       [
-        req.body.firstName,
-        req.body.lastName,
         req.body.contact_Email,
         req.body.user_Details,
         req.body.file_UploadId,
@@ -72,10 +70,8 @@ exports.ContactDetailsEdit = async (req, res, next) => {
     }
     const [rows1] = await dbConn.execute(
       // "UPDATE tbl_contactdetails SET `firstName` =?,`company_Id`=?,`lastName`=?,`contact_Email`=?,`user_Details`=?,`file_UploadId`=?,`IsActive`=?,`list_Id`=?,`contact_Number`=? WHERE `contact_id` = ?",
-      'call sendquickmail_db.Update_ContactDetails(?,?,?,?,?,?,?,?,?,?)',
+      'call sendquickmail_db.Update_ContactDetails(?,?,?,?,?,?,?,?)',
       [
-        req.body.firstName,
-        req.body.lastName,
         req.body.contact_Email,
         req.body.user_Details,
         req.body.file_UploadId,
