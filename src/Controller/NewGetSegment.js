@@ -3,16 +3,16 @@ exports.findBySearch = async (req, res) => {
     const bodyKeys = Object.keys(req.body);
     var users = '';
     try {
-        if(bodyKeys[0] == 'first_Name'){
-            const { first_Name } = req.body;
-            users = await Segment.searchUsersByFirstName(first_Name);
+        if(bodyKeys[0] == 'First_Name'){
+            const { First_Name } = req.body;
+            users = await Segment.searchUsersByFirstName(First_Name);
         } else if(bodyKeys[0] == 'email'){ console.log('testt');
             const { email } = req.body;
             console.log('payload', email);
             users = await Segment.searchUsersByEmail(email);
-        } else if(bodyKeys[0] == 'last_name'){
-            const { last_name } = req.body;
-            users = await Segment.searchUsersByLastName(last_name);
+        } else if(bodyKeys[0] == 'Last_name'){
+            const { Last_name } = req.body;
+            users = await Segment.searchUsersByLastName(Last_name);
         }
         res.json({ users });
     } catch (error) {
