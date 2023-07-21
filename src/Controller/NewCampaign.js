@@ -148,19 +148,12 @@ exports.UpdateCampaign = async (req, res, next) => {
                 req.body.Timezone,
                 req.body.company_Id,
                 req.body.UserId,
-                req.body.id,
+                req.body.campaign_Id,
             ]);
 
 
         console.log('message', rows)
 
-
-        // if (rows.affectedRows === 1) {
-        //   return res.status(201).json({
-        //     success: rows,
-        //     message: "The Segment has been successfully Updated",
-        //   });
-        // }
 
         return res.json({
             success: true,
