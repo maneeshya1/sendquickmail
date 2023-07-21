@@ -189,9 +189,7 @@ exports.GetSegmentbyId = async (req, res, next) => {
 
 exports.GetSegmentbyUserId = async (req, res, next) => {
   try {
-    console.log("execute....");
     const [row_a] = await dbConn.execute(
-      // "SELECT * FROM `tbl_segment` WHERE `UserId`= ?",
       'call sendquickmail_db.GetSegmentbyUserid(?)',
       [req.body.UserId]
     );
@@ -200,7 +198,7 @@ exports.GetSegmentbyUserId = async (req, res, next) => {
       return res.json({
         success: "true",
         message: "User Id matched Successfully",
-        data: row_a[0],
+        data: row_a,
       });
     } else {
       return res.json({
